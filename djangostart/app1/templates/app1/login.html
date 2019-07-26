@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>百度账号登录</title>
+    <link rel="stylesheet" href="/static/app1/css/login.css">
+</head>
+<body>
+<div class="div1">
+    <div class="div2">
+        <img src="/static/app1/imgs/loginlogo.png" class="img1"><span class="span1">用户名密码登录</span>
+    </div>
+    <div class="div3">
+        <form>
+            {% csrf_token %}
+            <input type="tel" name="username" class="input1" placeholder="设置用户名"><br/>
+            <input type="password" name="password" class="input2" placeholder="输入密码"><br/>
+            <input type="checkbox" class="input3"><span class="span2">下次自动登录</span><br/>
+            <button type="submit" class="button1" id="button1">登录</button><br/>
+            <a href="#" class="a1">忘记密码?</a><a href="#" class="a2">短信快捷登录</a>
+        </form>
+    </div>
+    <div class="div4">
+        <a href="#" class="a3">扫码登录&nbsp&nbsp&nbsp|</a>
+        <a href="#" class="a4"><img src="/static/app1/imgs/qq.png"></a>
+        <a href="#" class="a5"><img src="/static/app1/imgs/wechat.png"></a>
+        <a href="#" class="a6">立即注册</a>
+    </div>
+</div>
+<script src="/static/app1/js/jquery.min.js"></script>
+<p>{{ msg }}</p>
+</body>
+</html>
