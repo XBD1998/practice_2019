@@ -1,0 +1,53 @@
+/*后代选择器*/
+div p{
+
+}
+/*选择div内所有p标签*/
+
+/*子选择器*/
+div>p{
+
+}
+/*选择div的子p标签*/
+
+/*相邻兄弟选择器*/
+div+p{
+
+}
+/*选择div的兄弟p标签，且div与p相邻*/
+
+/*普通相邻兄弟选择器*/
+div~p{
+
+}
+/*p是div的兄弟，div与p可以不相邻*/
+/*所有的p必须在div后面*/
+
+/*伪类*/
+p:first-child{
+    /*第一个p元素*/
+}
+
+p>i:first-child{
+    /*p里的第一个i元素*/
+}
+
+p:first-child i{
+    /*第一个p里的所有i元素*/
+}
+
+.marked div p{
+    /*设置class属性值为marked的标签里的div里的p标签*/
+}
+
+div,p,[title]{
+    /*设置所有的div和p元素的样式，设置有title属性的对象的样式*/
+}
+
+input[type="text"]{
+    /*设置所有input标签中type为"text"的对象*/
+}
+
+/*Fixed：相对浏览器的位置*/
+/*Relative：占窗口空间，相对自己原来的位置，可重叠*/
+/*Absolute：相对已定位的父元素的位置，可重叠*/
