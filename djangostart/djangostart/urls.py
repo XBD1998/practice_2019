@@ -24,5 +24,5 @@ urlpatterns = [
     url(r'^login/$', views.reg),
     # url(r'^index/$', views.reg),
     url(r'^django_templates/', include('apps.django_templates.urls', namespace='django_templates')),
-
+    url(r'^forms_base/', include('apps.forms_base.urls', namespace='forms_base')),
 ]

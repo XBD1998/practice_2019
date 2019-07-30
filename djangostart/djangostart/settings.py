@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #应用创建之后要记得加到这里来
     'app1',
-    'apps.django_templates'
+    'apps.django_templates',
+    'apps.forms_base'
 ]
 
 MIDDLEWARE = [
