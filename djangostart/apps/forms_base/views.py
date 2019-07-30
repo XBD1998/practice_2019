@@ -22,6 +22,8 @@ def register(request):
             #给整个表单添加验证方法：定义form的时候，加一个clean方法
             username = reg_form.cleaned_data["username"]
             password = reg_form.cleaned_data["password"]
+            password = make_password(password)
+            UserInfo.objects.create(username=username, password=password)
             print("合法")
         else:
             print("不合法")
@@ -31,6 +33,26 @@ def login(request):
     login_form = LoginForm()
     if request.method == "POST":
         login_form = LoginForm(request.POST)
+        #is_valid提交的数据合法（会检查所有字段及表单整体的合法性）
+        if login_form.is_valid():
+            password = login_form.cleaned_data["password"]   #cleaned_data提取表单的所有数据
+            user = UserInfo.objects.get(username=login_form.cleaned_data["username"])
+            #user.password => 密文
+            #password => 明文
+            if check_password(password, user.password):
+                #验证成功，登录
+                print("用户名密码验证成功")
+                #注意需要把user对象需要能被序列化（json格式）
+                request.session['user'] = user.username
+                #1.生成一个随机的sessionid字符串
+                #2. 将sessionid和键值对保存到本地
+                #3.通过cookie将sessionid保存到客户端
+                #4.只可以通过sessionid来判断当前是哪个用户登录
+            else:
+                #验证失败
+                messages.add_message(request, messages.INFO, "用户名密码验证失败")
+                print("用户名密码验证失败")
+    return
 
 def logout(request):
     print('退出成功')
