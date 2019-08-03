@@ -52,9 +52,10 @@ def login(request):
                 #验证失败
                 messages.add_message(request, messages.INFO, "用户名密码验证失败")
                 print("用户名密码验证失败")
-    return
+    return render(request, 'forms_base/login.html', {"form":login_form})
 
 def logout(request):
-    print('退出成功')
+    if request.session.get("user"):
+        del request.session["user"]
     return HttpResponse("退出成功")
 

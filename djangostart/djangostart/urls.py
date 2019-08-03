@@ -16,6 +16,13 @@ Including another URLconf
 from django.conf.urls import url,include
 from django.contrib import admin
 from app1 import views
+from django.conf.urls import handler404, handler500
+# from blog import views
+from django.conf import settings
+from django .conf.urls.static import static
+from django.views.static import serve
+import re
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^demo_form_db/$', views.demo_form_db),
@@ -25,4 +32,8 @@ urlpatterns = [
     # url(r'^index/$', views.reg),
     url(r'^django_templates/', include('apps.django_templates.urls', namespace='django_templates')),
     url(r'^forms_base/', include('apps.forms_base.urls', namespace='forms_base')),
+    url(r'^django_view/', include('apps.django_view.urls', namespace='django_view')),
+    url(r'^my404/$', views.my404, name="my404"),
+    url(r'^%s(?P<path>.*)$' % re.escape(settings.STATIC_URL.lstrip('/')), serve, {"document_root":settings.STATIC_ROOT}),
+    url(r'^%s(?P<path>.*)$' % re.escape(settings.MEDIA_URL.lstrip('/')), serve, {"document_root":settings.MEDIA_ROOT}),
 ]

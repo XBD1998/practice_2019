@@ -69,4 +69,6 @@ def index(request):
         user = {'username':username, 'password':password}
     return render(request, 'app1/index.html', {'user_list': user_list})
 
-
+def my404(request):
+    import random
+    return render(request, "404.html", {"id":random.randint(1,100)})
